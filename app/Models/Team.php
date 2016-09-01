@@ -48,8 +48,8 @@ class Team extends Model
         return $this->hasManyThrough('App\Models\Kicker', 'App\Models\Player');
     }
 
-    public function defenses()
+    public function defense()
     {
-        return $this->hasManyThrough('App\Models\Defense', 'App\Models\Player');
+        return $this->hasOne('App\Models\Defense');
     }
 }
