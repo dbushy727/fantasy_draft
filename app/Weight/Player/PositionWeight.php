@@ -38,13 +38,9 @@ class PositionWeight implements WeightInterface
      */
     public function getWeightClasses()
     {
-        $classes = array_filter(scandir(app_path("Weight/Player/{$this->player_position->position}")), function ($file) {
-            return !starts_with($file, 'Weight') && ends_with($file, '.php');
+        return get_classes(app_path("Weight/Player/{$this->player_position->position}"), function ($file) {
+            return !starts_with($file, 'Weight');
         });
-
-        return array_map(function ($file) {
-            return str_replace('.php', '', $file);
-        }, $classes);
     }
 
     /**
