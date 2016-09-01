@@ -52,9 +52,7 @@ class PositionWeight implements WeightInterface
      */
     public function positionSpecificWeight()
     {
-        $classes = $this->getWeightClasses();
-
-        return array_reduce($classes, function ($carry, $class) {
+        return array_reduce($this->getWeightClasses(), function ($carry, $class) {
             $carry += app("App\Weight\Player\\{$this->player_position->position}\\$class", [$this->player_position])->weight();
 
             return $carry;
